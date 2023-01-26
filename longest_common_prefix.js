@@ -1,24 +1,43 @@
 var longestCommonPrefix = function (strs) {
 
-    let result = ""
-    let count
-    let prevCount = 999
-    let first = strs[0]
+    if (strs.length == 0) return ""
+    if (strs.length == 1) return strs[0]
+
+    let output;
+    let compare = strs[0];
+    let l;
+    let newString;
+    let prevnumOfString = 0;
+    let numOfString = 0;
+    let maxNString = 9999;
+    let k;
 
     for (let i = 1; i < strs.length; i++) {
-        count = 0
-        let item = strs[i]
-        for (let j = 0; j < item.length; j++) {
-            if (first[j] == item[j]) {
-                count += 1
+
+        newString = strs[i]
+        let j = newString.length
+        k = 0;
+        l = compare.length;
+
+        while (k < j && l > 0) {
+            if (compare[k] == newString[k]) {
+                prevnumOfString += 1
             } else {
+                numOfString = Math.min(numOfString, prevnumOfString)
                 break;
             }
+            k++;
+            l--;
         }
+        numOfString = Math.min(maxNString, prevnumOfString) // 4
+        maxNString = prevnumOfString // 4
 
-        count = Math.min(prevCount, count)
-        prevCount = count
+        console.log(numOfString)
+        prevnumOfString = 0;
     }
-    result = first.substring(0, count)
-    return result
+
+    if (numOfString == 0) return ""
+    output = compare.substr(0, numOfString);
+    return output;
+
 };
