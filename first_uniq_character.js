@@ -1,23 +1,25 @@
 var firstUniqChar = function (s) {
 
     let arr = s.split('')
-    let elements = []
     let index;
+    let elements = new Map()
 
     for (let i = 0; i < arr.length; i++) {
-
-        if (!elements.includes(arr[i])) {
-            elements.push(arr[i])
+        if (!elements[arr[i]]) {
+            elements[arr[i]] = 1
         } else {
-            index = elements.indexOf(arr[i])
-            elements.splice(index, 1)
+            elements[arr[i]] += 1
         }
     }
 
-    if (elements.length == 0) return -1
+    for (const l in elements) {
+        if (elements[l] == 1) {
+            index = arr.indexOf(l)
+            console.log(index)
+            return index
+        }
+    }
 
-    index = arr.indexOf(elements[0])
-
-    return index
+    return -1
 
 };
