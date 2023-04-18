@@ -19,8 +19,9 @@ var findPoisonedDuration = function (timeSeries, duration) {
 
         start = timeSeries[i] // 1 , 2 
         if (start <= end) {
-            end = start + duration - 1 // 2 + 2 - 1 = 3
-            total = total + (end - start + 1 - 1) // 2 + (3 - 2 + 1) = 4
+            let prev = end
+            end = start + duration - 1        // 6 
+            total = total + (end - prev + 1 - 1)
         } else {
             end = start + duration - 1 // 1 + 2 - 1 = 2, 
             total = total + (end - start + 1) // 2 - 1 + 1 = 2
