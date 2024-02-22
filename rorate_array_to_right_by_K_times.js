@@ -1,6 +1,9 @@
 var rotate = function (nums, k) {
 
-    for (let i = 0; i < k; i++) {
-        nums.unshift(nums.pop());
+    while (nums.length <= k) {
+        k = k - nums.length
     }
+
+    const temp = nums.splice(0, nums.length - k)
+    nums.push(...temp)
 };
